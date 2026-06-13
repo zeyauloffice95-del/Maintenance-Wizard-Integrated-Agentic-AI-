@@ -23,7 +23,7 @@ export default function Dashboard() {
     try {
 
       const response = await axios.get(
-        "http://127.0.0.1:8000/dashboard/status"
+        "https://maintenance-wizard-integrated-agentic-ai-production.up.railway.app/dashboard/status"
       );
 
       setDashboard(response.data);

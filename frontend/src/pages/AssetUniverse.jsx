@@ -10,7 +10,7 @@ export default function AssetUniverse() {
   useEffect(() => {
 
     axios
-      .get("http://127.0.0.1:8000/assets")
+      .get("https://maintenance-wizard-integrated-agentic-ai-production.up.railway.app/assets")
       .then((res) => setAssets(res.data))
       .catch(console.error);
 

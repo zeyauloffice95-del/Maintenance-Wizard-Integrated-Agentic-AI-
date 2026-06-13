@@ -31,7 +31,7 @@ export default function Analysis() {
       setLoading(true);
 
       const response = await axios.post(
-        "http://127.0.0.1:8000/maintenance/analyze",
+        "https://maintenance-wizard-integrated-agentic-ai-production.up.railway.app/maintenance/analyze",
         {
           equipment,
           symptoms,
@@ -45,7 +45,7 @@ export default function Analysis() {
       setResult(response.data);
 
       await axios.post(
-        "http://127.0.0.1:8000/dashboard/update",
+        "https://maintenance-wizard-integrated-agentic-ai-production.up.railway.app/dashboard/update",
         response.data
       );
 
@@ -66,7 +66,7 @@ export default function Analysis() {
     try {
 
       const response = await fetch(
-        "http://127.0.0.1:8000/report/download",
+        "https://maintenance-wizard-integrated-agentic-ai-production.up.railway.app/report/download",
         {
           method: "POST",
           headers: {
@@ -110,7 +110,7 @@ export default function Analysis() {
     try {
 
       await axios.post(
-        "http://127.0.0.1:8000/feedback/submit",
+        "https://maintenance-wizard-integrated-agentic-ai-production.up.railway.app/feedback/submit",
         {
           equipment,
           diagnosis: result?.diagnosis,

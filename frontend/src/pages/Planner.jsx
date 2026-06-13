@@ -9,7 +9,7 @@ export default function Planner(){
   useEffect(()=>{
 
     axios
-      .get("http://127.0.0.1:8000/planner")
+      .get("https://maintenance-wizard-integrated-agentic-ai-production.up.railway.app/planner")
       .then(res=>setTasks(res.data));
 
   },[]);

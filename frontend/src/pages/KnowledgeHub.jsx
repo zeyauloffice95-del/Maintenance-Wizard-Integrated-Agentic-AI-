@@ -14,7 +14,7 @@ export default function KnowledgeHub(){
 
       const res =
         await axios.get(
-          `http://127.0.0.1:8000/knowledge/${query}`
+          `https://maintenance-wizard-integrated-agentic-ai-production.up.railway.app/knowledge/${query}`
         );
 
       setAnswer(

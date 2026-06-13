@@ -14,7 +14,7 @@ export default function Copilot() {
       setLoading(true);
 
       const response = await axios.post(
-        "http://127.0.0.1:8000/chat/ask",
+        "https://maintenance-wizard-integrated-agentic-ai-production.up.railway.app/chat/ask",
         {
           question
         }

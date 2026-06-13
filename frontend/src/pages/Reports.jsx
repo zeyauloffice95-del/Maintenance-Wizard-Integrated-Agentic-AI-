@@ -9,7 +9,7 @@ export default function Reports(){
   useEffect(()=>{
 
     axios
-      .get("http://127.0.0.1:8000/reports")
+      .get("https://maintenance-wizard-integrated-agentic-ai-production.up.railway.app/reports")
       .then(res=>setReports(res.data));
 
   },[]);

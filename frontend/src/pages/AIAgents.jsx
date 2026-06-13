@@ -9,7 +9,7 @@ export default function AIAgents(){
   useEffect(()=>{
 
     axios
-      .get("http://127.0.0.1:8000/agents")
+      .get("https://maintenance-wizard-integrated-agentic-ai-production.up.railway.app/agents")
       .then(res=>setAgents(res.data));
 
   },[]);

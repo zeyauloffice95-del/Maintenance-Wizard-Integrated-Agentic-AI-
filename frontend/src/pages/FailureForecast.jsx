@@ -8,7 +8,7 @@ export default function FailureForecast() {
   useEffect(()=>{
 
     axios
-      .get("http://127.0.0.1:8000/forecast")
+      .get("https://maintenance-wizard-integrated-agentic-ai-production.up.railway.app/forecast")
       .then(res => setData(res.data));
 
   },[]);
