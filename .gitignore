@@ -1,0 +1,94 @@
+# Python
+__pycache__/
+*.pyc
+
+# Environment
+.env
+backend/.env
+
+# Virtual envs
+venv/
+backend/venv/
+
+# React
+frontend/node_modules/
+frontend/dist/
+
+# VSCode
+.vscode/
+
+# Generated reports
+reports/
+
+# Vector DB
+vector_store/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Python
+__pycache__/
+*.pyc
+
+# Virtual Environments
+venv/
+backend/venv/
+torch/
+
+# Node
+frontend/node_modules/
+frontend/dist/
+
+# Environment
+.env
+.env.*
+
+# Logs
+*.log
+
+# VSCode
+.vscode/
+
+# Reports
+reports/*.pdf
+
+# Python cache
+.pytest_cache/
+
+# Vector DB
+vector_store/
+
+# OS
+.DS_Store
