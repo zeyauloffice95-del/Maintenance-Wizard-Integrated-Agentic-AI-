@@ -26,53 +26,40 @@ export default function Reports() {
       </h1>
 
       {
-        reports.map((report, index) => (
-
+        reports.map((report,index)=>(
           <div
             key={index}
             className="
-              bg-slate-900
-              p-4
-              rounded
-              mb-4
-              flex
-              justify-between
-              items-center
+            bg-slate-900
+            p-4
+            rounded
+            mb-3
+            flex
+            justify-between
+            items-center
             "
           >
 
-            <div>
-
-              <div className="font-semibold">
-                {report.name}
-              </div>
-
-              {
-                report.date &&
-                <div className="text-sm text-gray-400">
-                  {report.date}
-                </div>
-              }
-
-            </div>
+            <span>
+              {report.name}
+            </span>
 
             <a
-              href={`${API_URL}/reports/download/${report.name}`}
+              href={`https://maintenance-wizard-integrated-agentic-ai-production.up.railway.app/reports/download/${report.name}`}
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noreferrer"
               className="
-                bg-cyan-600
-                hover:bg-cyan-700
-                px-4
-                py-2
-                rounded
+              bg-cyan-600
+              hover:bg-cyan-700
+              px-4
+              py-2
+              rounded
               "
             >
               Download
             </a>
 
           </div>
-
         ))
       }
 

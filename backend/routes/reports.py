@@ -1,27 +1,36 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter
 from fastapi.responses import FileResponse
 from pathlib import Path
 
 router = APIRouter()
 
-# backend/reports folder
-REPORTS_DIR = Path(__file__).resolve().parent.parent / "reports"
+REPORTS_DIR = (
+    Path(__file__)
+    .resolve()
+    .parent.parent
+    / "reports"
+)
 
 
 @router.get("/")
-def reports():
+def list_reports():
 
-    pdfs = []
+    REPORTS_DIR.mkdir(
+        exist_ok=True
+    )
 
-    if REPORTS_DIR.exists():
+    pdf_files = sorted(
+        REPORTS_DIR.glob("*.pdf"),
+        key=lambda x: x.stat().st_mtime,
+        reverse=True
+    )
 
-        for pdf in REPORTS_DIR.glob("*.pdf"):
-
-            pdfs.append({
-                "name": pdf.name
-            })
-
-    return pdfs
+    return [
+        {
+            "name": pdf.name
+        }
+        for pdf in pdf_files
+    ]
 
 
 @router.get("/download/{filename}")
@@ -31,10 +40,9 @@ def download_report(filename: str):
 
     if not file_path.exists():
 
-        raise HTTPException(
-            status_code=404,
-            detail="Report not found"
-        )
+        return {
+            "error": "File not found"
+        }
 
     return FileResponse(
         path=str(file_path),

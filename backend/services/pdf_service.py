@@ -7,20 +7,32 @@ from reportlab.platypus import (
 
 from reportlab.lib.styles import getSampleStyleSheet
 from datetime import datetime
-import os
+from pathlib import Path
 
 
 def generate_pdf_report(result):
 
-    os.makedirs("../reports", exist_ok=True)
-
-    filename = (
-        f"../reports/"
-        f"Maintenance_Report_"
-        f"{datetime.now().strftime('%Y%m%d_%H%M%S')}.pdf"
+    reports_dir = (
+        Path(__file__)
+        .resolve()
+        .parent.parent
+        / "reports"
     )
 
-    doc = SimpleDocTemplate(filename)
+    reports_dir.mkdir(
+        parents=True,
+        exist_ok=True
+    )
+
+    filename = (
+        reports_dir
+        /
+        f"Maintenance_Report_{datetime.now().strftime('%Y%m%d_%H%M%S')}.pdf"
+    )
+
+    doc = SimpleDocTemplate(
+        str(filename)
+    )
 
     styles = getSampleStyleSheet()
 
@@ -33,7 +45,9 @@ def generate_pdf_report(result):
         )
     )
 
-    content.append(Spacer(1, 20))
+    content.append(
+        Spacer(1, 20)
+    )
 
     for key, value in result.items():
 
@@ -55,8 +69,10 @@ def generate_pdf_report(result):
             Spacer(1, 10)
         )
 
-    content.append(PageBreak())
+    content.append(
+        PageBreak()
+    )
 
     doc.build(content)
 
-    return filename
+    return str(filename)
