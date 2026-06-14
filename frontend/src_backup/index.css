@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+html,
+body,
+#root {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background: #050816;
+  color: white;
+  font-family: Inter, sans-serif;
+}
+
+/* Steel industry theme */
+
+.card {
+  background: #111827;
+  border: 1px solid #1f2937;
+  border-radius: 16px;
+}
+
+.kpi-blue {
+  color: #38bdf8;
+}
+
+.kpi-orange {
+  color: #f59e0b;
+}
+
+.kpi-red {
+  color: #f87171;
+}
+
+.kpi-green {
+  color: #34d399;
+}

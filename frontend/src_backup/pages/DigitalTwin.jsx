@@ -9,7 +9,7 @@ export default function DigitalTwin(){
   useEffect(()=>{
 
     axios
-      .get("https://maintenance-wizard-integrated-agentic-ai-production.up.railway.app/twin/")
+      .get("https://maintenance-wizard-integrated-agentic-ai-production.up.railway.app/twin")
       .then(res=>setData(res.data));
 
   },[]);

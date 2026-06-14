@@ -8,7 +8,7 @@ export default function HealthRadar() {
   useEffect(()=>{
 
     axios
-      .get("https://maintenance-wizard-integrated-agentic-ai-production.up.railway.app/health/")
+      .get("https://maintenance-wizard-integrated-agentic-ai-production.up.railway.app/health")
       .then(res => setData(res.data));
 
   },[]);

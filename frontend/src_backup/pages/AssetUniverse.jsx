@@ -10,7 +10,7 @@ export default function AssetUniverse() {
   useEffect(() => {
 
     axios
-      .get("https://maintenance-wizard-integrated-agentic-ai-production.up.railway.app/assets/")
+      .get("https://maintenance-wizard-integrated-agentic-ai-production.up.railway.app/assets")
       .then((res) => setAssets(res.data))
       .catch(console.error);
 

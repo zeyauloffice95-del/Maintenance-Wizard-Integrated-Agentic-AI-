@@ -9,7 +9,7 @@ export default function Reports(){
   useEffect(()=>{
 
     axios
-      .get("https://maintenance-wizard-integrated-agentic-ai-production.up.railway.app/reports/")
+      .get("https://maintenance-wizard-integrated-agentic-ai-production.up.railway.app/reports")
       .then(res=>setReports(res.data));
 
   },[]);
