@@ -9,17 +9,28 @@ export default function KnowledgeHub(){
   const [answer,setAnswer] =
     useState("");
 
-  const searchKnowledge =
-    async ()=>{
+  const searchKnowledge = async () => {
 
-      const res =
-        await axios.get(
-          `https://maintenance-wizard-integrated-agentic-ai-production.up.railway.app/knowledge/${query}/`
-        );
+    try {
+
+      const res = await axios.get(
+        `https://maintenance-wizard-integrated-agentic-ai-production.up.railway.app/knowledge/${query}`
+      );
+
+      console.log("Knowledge response:", res.data);
 
       setAnswer(
-        res.data.result
+        res.data.result || "No result found"
       );
+
+    } catch (error) {
+
+      console.error(error);
+
+      setAnswer(
+        "Knowledge search failed"
+      );
+    }
   };
 
   return(
