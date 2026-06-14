@@ -1,5 +1,5 @@
 import { useEffect,useState } from "react";
-import api from "../services/api";
+import axios from "axios";
 
 export default function Planner(){
 
@@ -8,7 +8,8 @@ export default function Planner(){
 
   useEffect(()=>{
 
-    api.get("/planner")
+    axios
+      .get("https://maintenance-wizard-integrated-agentic-ai-production.up.railway.app/planner/")
       .then(res=>setTasks(res.data));
 
   },[]);

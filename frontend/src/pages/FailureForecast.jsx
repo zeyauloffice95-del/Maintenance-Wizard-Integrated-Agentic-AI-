@@ -1,5 +1,5 @@
 import { useEffect,useState } from "react";
-import api from "../services/api";
+import axios from "axios";
 
 export default function FailureForecast() {
 
@@ -7,7 +7,8 @@ export default function FailureForecast() {
 
   useEffect(()=>{
 
-    api.get("/forecast")
+    axios
+      .get("https://maintenance-wizard-integrated-agentic-ai-production.up.railway.app/forecast/")
       .then(res => setData(res.data));
 
   },[]);

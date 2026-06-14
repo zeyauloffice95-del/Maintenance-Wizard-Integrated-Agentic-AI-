@@ -1,5 +1,5 @@
 import { useEffect,useState } from "react";
-import api from "../services/api";
+import axios from "axios";
 
 export default function AIAgents(){
 
@@ -8,7 +8,8 @@ export default function AIAgents(){
 
   useEffect(()=>{
 
-    api.get("/agents")
+    axios
+      .get("https://maintenance-wizard-integrated-agentic-ai-production.up.railway.app/agents/")
       .then(res=>setAgents(res.data));
 
   },[]);
