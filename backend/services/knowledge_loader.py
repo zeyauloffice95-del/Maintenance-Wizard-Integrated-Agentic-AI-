@@ -1,8 +1,10 @@
 from pathlib import Path
 from pypdf import PdfReader
 
-BASE_DIR = Path(__file__).resolve().parent.parent.parent
-KNOWLEDGE_DIR = BASE_DIR / "knowledge"
+
+KNOWLEDGE_DIR = Path(__file__).resolve().parent.parent / "knowledge"
+
+print("Knowledge directory:", KNOWLEDGE_DIR)
 
 def load_documents():
 
