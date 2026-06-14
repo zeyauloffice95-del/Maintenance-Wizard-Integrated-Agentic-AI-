@@ -1,20 +1,23 @@
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
-export default function Reports(){
+const API_URL =
+  "https://maintenance-wizard-integrated-agentic-ai-production.up.railway.app";
 
-  const [reports,setReports] =
-    useState([]);
+export default function Reports() {
 
-  useEffect(()=>{
+  const [reports, setReports] = useState([]);
+
+  useEffect(() => {
 
     axios
-      .get("https://maintenance-wizard-integrated-agentic-ai-production.up.railway.app/reports/")
-      .then(res=>setReports(res.data));
+      .get(`${API_URL}/reports/`)
+      .then(res => setReports(res.data))
+      .catch(err => console.error(err));
 
-  },[]);
+  }, []);
 
-  return(
+  return (
 
     <div className="p-10 text-white">
 
@@ -23,13 +26,53 @@ export default function Reports(){
       </h1>
 
       {
-        reports.map((report,index)=>(
+        reports.map((report, index) => (
+
           <div
             key={index}
-            className="mb-3"
+            className="
+              bg-slate-900
+              p-4
+              rounded
+              mb-4
+              flex
+              justify-between
+              items-center
+            "
           >
-            {report.name}
+
+            <div>
+
+              <div className="font-semibold">
+                {report.name}
+              </div>
+
+              {
+                report.date &&
+                <div className="text-sm text-gray-400">
+                  {report.date}
+                </div>
+              }
+
+            </div>
+
+            <a
+              href={`${API_URL}/reports/download/${report.name}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="
+                bg-cyan-600
+                hover:bg-cyan-700
+                px-4
+                py-2
+                rounded
+              "
+            >
+              Download
+            </a>
+
           </div>
+
         ))
       }
 
