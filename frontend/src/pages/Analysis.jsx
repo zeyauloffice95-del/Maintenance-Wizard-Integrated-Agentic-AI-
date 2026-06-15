@@ -4,10 +4,10 @@ import axios from "axios";
 export default function Analysis() {
 
   const [equipment, setEquipment] =
-    useState("CCM Segment Bearing");
+    useState("");
 
   const [symptoms, setSymptoms] =
-    useState("High vibration, increasing temperature, abnormal noise");
+    useState("");
 
   const [faultMessage, setFaultMessage] =
     useState("");
@@ -203,6 +203,45 @@ export default function Analysis() {
         Equipment Analysis
       </h1>
 
+      <div className="
+      bg-slate-900
+      p-6
+      rounded-2xl
+      border
+      border-cyan-700
+      mb-8
+      ">
+
+        <h2 className="text-2xl text-cyan-400 font-bold mb-4">
+
+          Supported Input Types
+
+        </h2>
+
+        <div className="grid grid-cols-2 gap-2">
+
+          <div>✓ Equipment Delay Logs</div>
+          <div>✓ Fault/Error Messages</div>
+
+          <div>✓ Failure Reports</div>
+          <div>✓ Incident Records</div>
+
+          <div>✓ Sensor Summaries</div>
+          <div>✓ Anomaly Alerts</div>
+
+          <div>✓ Equipment Manuals</div>
+          <div>✓ Maintenance SOPs</div>
+
+          <div>✓ Historical Maintenance Records</div>
+          <div>✓ Spare Parts Information</div>
+
+          <div>✓ Natural Language Queries</div>
+          <div>✓ Multi-turn Troubleshooting</div>
+
+        </div>
+
+      </div>
+
       {/* Inputs */}
 
       <div className="space-y-4 mb-8">
@@ -262,16 +301,31 @@ export default function Analysis() {
           onChange={(e)=>setEngineerQuery(e.target.value)}
         />
 
-        <div className="bg-slate-900 p-4 rounded-xl">
+        <div className="bg-slate-900 p-6 rounded-2xl border border-cyan-800">
 
-          <div className="mb-2 text-cyan-400">
-            Upload Knowledge Documents
-          </div>
+          <h2 className="text-xl font-bold text-cyan-400 mb-4">
+
+            Knowledge Documents
+
+          </h2>
+
+          <p className="text-slate-400 mb-4">
+
+            Upload Manuals, SOPs, Failure Reports,
+            Maintenance Records and Spare Information
+
+          </p>
 
           <input
             type="file"
             multiple
             onChange={handleFiles}
+            className="
+            w-full
+            bg-slate-800
+            p-3
+            rounded-xl
+            "
           />
 
         </div>
@@ -297,6 +351,45 @@ export default function Analysis() {
 
           )
         }
+
+      </div>
+
+      <div className="flex gap-4 mb-8">
+
+        <button
+          onClick={analyzeEquipment}
+          disabled={loading}
+          className="
+          bg-cyan-600
+          hover:bg-cyan-500
+          px-8
+          py-3
+          rounded-xl
+          font-bold
+          "
+        >
+
+          {loading
+            ? "Analyzing..."
+            : "Run AI Analysis"}
+
+        </button>
+
+        <button
+          onClick={downloadReport}
+          className="
+          bg-green-600
+          hover:bg-green-500
+          px-8
+          py-3
+          rounded-xl
+          font-bold
+          "
+        >
+
+          Download Report
+
+        </button>
 
       </div>
 
