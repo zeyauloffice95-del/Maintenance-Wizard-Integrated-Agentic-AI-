@@ -5,8 +5,6 @@ export default function AssetUniverse() {
 
   const [assets, setAssets] = useState([]);
 
-  
-
   useEffect(() => {
 
     axios
@@ -16,43 +14,119 @@ export default function AssetUniverse() {
 
   }, []);
 
-  
+  const getRiskColor = (risk) => {
+
+    if (risk === "HIGH")
+      return "bg-red-500";
+
+    if (risk === "MEDIUM")
+      return "bg-yellow-500";
+
+    return "bg-green-500";
+  };
+
+  const getHealthColor = (health) => {
+
+    if (health < 70)
+      return "text-red-400";
+
+    if (health < 85)
+      return "text-yellow-400";
+
+    return "text-green-400";
+  };
 
   return (
 
     <div className="p-10 text-white">
 
-      <h1 className="text-4xl font-bold text-cyan-400 mb-6">
+      <h1 className="text-4xl font-bold text-cyan-400 mb-8">
         Asset Universe
       </h1>
 
-      <table className="w-full">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
 
-        <thead>
+        {assets.map((asset, index) => (
 
-          <tr className="text-left border-b border-slate-700">
-            <th>Name</th>
-            <th>Health</th>
-            <th>Risk</th>
-          </tr>
+          <div
+            key={index}
+            className="
+            bg-slate-900
+            border
+            border-slate-700
+            rounded-xl
+            p-5
+            shadow-lg
+            hover:scale-105
+            transition-all
+            duration-300
+            "
+          >
 
-        </thead>
+            <div className="flex justify-between items-center mb-3">
 
-        <tbody>
+              <div className="text-sm text-slate-400">
+                {asset.id}
+              </div>
 
-          {assets.map((asset,index)=>(
-            <tr key={index}>
+              <div
+                className={`
+                  px-3
+                  py-1
+                  rounded-full
+                  text-xs
+                  font-bold
+                  text-black
+                  ${getRiskColor(asset.risk)}
+                `}
+              >
+                {asset.risk}
+              </div>
 
-              <td>{asset.name}</td>
-              <td>{asset.health}%</td>
-              <td>{asset.risk}</td>
+            </div>
 
-            </tr>
-          ))}
+            <div className="text-xl font-bold text-cyan-300 mb-2">
+              {asset.name}
+            </div>
 
-        </tbody>
+            <div className="text-slate-400 mb-4">
+              {asset.area}
+            </div>
 
-      </table>
+            <div className="flex justify-between items-center">
+
+              <span className="text-slate-300">
+                Health Score
+              </span>
+
+              <span
+                className={`
+                  font-bold
+                  text-2xl
+                  ${getHealthColor(asset.health)}
+                `}
+              >
+                {asset.health}%
+              </span>
+
+            </div>
+
+            <div className="mt-4 w-full bg-slate-700 rounded-full h-3">
+
+              <div
+                className="bg-cyan-500 h-3 rounded-full"
+                style={{
+                  width: `${asset.health}%`
+                }}
+              />
+
+            </div>
+
+          </div>
+
+        ))}
+
+      </div>
 
     </div>
 

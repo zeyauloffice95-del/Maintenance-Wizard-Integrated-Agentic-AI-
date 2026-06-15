@@ -58,6 +58,16 @@ export default function Dashboard() {
         value: dashboard.optimization_actions,
         color: "text-emerald-400",
       },
+      {
+        title: "Fleet Health",
+        value: `${dashboard.asset_health}%`,
+        color: "text-green-400",
+      },
+      {
+        title: "Monthly Savings",
+        value: `₹${dashboard.monthly_savings.toLocaleString()}`,
+        color: "text-purple-400",
+      },
     ]
   : [];
 
@@ -104,7 +114,7 @@ export default function Dashboard() {
 
         {/* KPI */}
 
-        <div className="grid grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-6 gap-6 mb-8">
 
           {kpis.map((item) => (
             <KPIcard
