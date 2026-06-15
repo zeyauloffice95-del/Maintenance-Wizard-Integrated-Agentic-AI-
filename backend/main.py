@@ -19,7 +19,7 @@ from routes.planner import router as planner_router
 from routes.digital_twin import router as twin_router
 from routes.knowledge import router as knowledge_router
 from routes.reports import router as reports_router
-from routes.equipment_data import router as equipment_router
+
 
 
 app = FastAPI(
@@ -78,10 +78,6 @@ app.include_router(twin_router,prefix="/twin")
 app.include_router(knowledge_router,prefix="/knowledge")
 app.include_router(reports_router,prefix="/reports")
 
-app.include_router(
-    equipment_router,
-    prefix="/equipment-data"
-)
 
 '''
 docs = load_documents()

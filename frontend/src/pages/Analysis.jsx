@@ -466,7 +466,7 @@ export default function Analysis() {
 
                 <div className="text-green-400 font-bold mb-2">
 
-                  Recommended Knowledge Documents
+                  AI Recommended Knowledge Sources
 
                 </div>
 
