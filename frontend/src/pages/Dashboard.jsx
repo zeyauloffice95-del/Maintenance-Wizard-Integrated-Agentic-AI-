@@ -167,95 +167,7 @@ export default function Dashboard() {
 
         </div>
 
-        {/* Asset Distribution */}
-
-        <div className="bg-slate-900 rounded-3xl p-6 border border-slate-800 mb-8">
-
-          <h2 className="text-3xl font-bold text-cyan-400 mb-6">
-            Plant Asset Distribution
-          </h2>
-
-          <div className="h-96">
-
-            <ResponsiveContainer width="100%" height="100%">
-
-              <PieChart>
-
-                <Pie
-                  data={assetDistribution}
-                  cx="50%"
-                  cy="50%"
-                  outerRadius={140}
-                  dataKey="value"
-                  label
-                >
-
-                  {assetDistribution.map((entry, index) => (
-
-                    <Cell
-                      key={index}
-                      fill={COLORS[index % COLORS.length]}
-                    />
-
-                  ))}
-
-                </Pie>
-
-                <Tooltip />
-
-              </PieChart>
-
-            </ResponsiveContainer>
-
-          </div>
-
-        </div>
-
-        {/* Asset Health Ranking */}
-
-        <div className="bg-slate-900 rounded-3xl p-6 border border-slate-800 mb-8">
-
-          <h2 className="text-3xl font-bold text-green-400 mb-6">
-            Asset Health Ranking
-          </h2>
-
-          <div className="h-96">
-
-            <ResponsiveContainer width="100%" height="100%">
-
-              <BarChart
-                data={assetHealthData}
-                layout="vertical"
-              >
-
-                <CartesianGrid strokeDasharray="3 3" />
-
-                <XAxis
-                  type="number"
-                  domain={[0, 100]}
-                />
-
-                <YAxis
-                  dataKey="asset"
-                  type="category"
-                  width={150}
-                />
-
-                <Tooltip />
-
-                <Bar
-                  dataKey="health"
-                  fill="#22c55e"
-                />
-
-              </BarChart>
-
-            </ResponsiveContainer>
-
-          </div>
-
-        </div>
-
+        
         {/* Row 1 */}
 
         <div className="grid grid-cols-3 gap-6 mb-8">
@@ -482,6 +394,101 @@ export default function Dashboard() {
           </div>
 
         </div>
+        {/* Analytics Charts */}
+
+        <div className="grid grid-cols-2 gap-6 mb-8">
+
+          {/* Asset Distribution */}
+
+          <div className="bg-slate-900 rounded-3xl p-6 border border-slate-800">
+
+            <h2 className="text-3xl font-bold text-cyan-400 mb-6">
+              Plant Asset Distribution
+            </h2>
+
+            <div className="h-96">
+
+              <ResponsiveContainer width="100%" height="100%">
+
+                <PieChart>
+
+                  <Pie
+                    data={assetDistribution}
+                    cx="50%"
+                    cy="50%"
+                    outerRadius={140}
+                    dataKey="value"
+                    label
+                  >
+
+                    {assetDistribution.map((entry, index) => (
+
+                      <Cell
+                        key={index}
+                        fill={COLORS[index % COLORS.length]}
+                      />
+
+                    ))}
+
+                  </Pie>
+
+                  <Tooltip />
+
+                </PieChart>
+
+              </ResponsiveContainer>
+
+            </div>
+
+          </div>
+
+          {/* Asset Health Ranking */}
+
+          <div className="bg-slate-900 rounded-3xl p-6 border border-slate-800">
+
+            <h2 className="text-3xl font-bold text-green-400 mb-6">
+              Asset Health Ranking
+            </h2>
+
+            <div className="h-96">
+
+              <ResponsiveContainer width="100%" height="100%">
+
+                <BarChart
+                  data={assetHealthData}
+                  layout="vertical"
+                >
+
+                  <CartesianGrid strokeDasharray="3 3" />
+
+                  <XAxis
+                    type="number"
+                    domain={[0, 100]}
+                  />
+
+                  <YAxis
+                    dataKey="asset"
+                    type="category"
+                    width={160}
+                  />
+
+                  <Tooltip />
+
+                  <Bar
+                    dataKey="health"
+                    fill="#22c55e"
+                  />
+
+                </BarChart>
+
+              </ResponsiveContainer>
+
+            </div>
+
+          </div>
+
+        </div>
+
 
         {/* Pipeline */}
 
