@@ -7,7 +7,13 @@ import {
   Pie,
   Cell,
   Tooltip,
-  ResponsiveContainer
+  ResponsiveContainer,
+
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid
 } from "recharts";
 
 export default function Dashboard() {
@@ -20,6 +26,15 @@ export default function Dashboard() {
     { name: "CCM", value: 15 },
     { name: "Power Plant", value: 12 },
     { name: "Utilities", value: 10 }
+  ];
+
+  const assetHealthData = [
+    { asset: "Blast Furnace Motor", health: 96 },
+    { asset: "Compressor", health: 92 },
+    { asset: "Cooling Fan", health: 88 },
+    { asset: "Hydraulic Pump", health: 83 },
+    { asset: "HSM Gearbox", health: 76 },
+    { asset: "CCM Bearing", health: 62 }
   ];
 
   const COLORS = [
@@ -189,6 +204,51 @@ export default function Dashboard() {
                 <Tooltip />
 
               </PieChart>
+
+            </ResponsiveContainer>
+
+          </div>
+
+        </div>
+
+        {/* Asset Health Ranking */}
+
+        <div className="bg-slate-900 rounded-3xl p-6 border border-slate-800 mb-8">
+
+          <h2 className="text-3xl font-bold text-green-400 mb-6">
+            Asset Health Ranking
+          </h2>
+
+          <div className="h-96">
+
+            <ResponsiveContainer width="100%" height="100%">
+
+              <BarChart
+                data={assetHealthData}
+                layout="vertical"
+              >
+
+                <CartesianGrid strokeDasharray="3 3" />
+
+                <XAxis
+                  type="number"
+                  domain={[0, 100]}
+                />
+
+                <YAxis
+                  dataKey="asset"
+                  type="category"
+                  width={150}
+                />
+
+                <Tooltip />
+
+                <Bar
+                  dataKey="health"
+                  fill="#22c55e"
+                />
+
+              </BarChart>
 
             </ResponsiveContainer>
 
