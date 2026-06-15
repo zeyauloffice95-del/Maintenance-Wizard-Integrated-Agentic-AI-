@@ -9,6 +9,24 @@ export default function Analysis() {
   const [symptoms, setSymptoms] =
     useState("High vibration, increasing temperature, abnormal noise");
 
+  const [faultMessage, setFaultMessage] =
+    useState("");
+
+  const [delayLog, setDelayLog] =
+    useState("");
+
+  const [sensorSummary, setSensorSummary] =
+    useState("");
+
+  const [anomalyAlert, setAnomalyAlert] =
+    useState("");
+
+  const [engineerQuery, setEngineerQuery] =
+    useState("");
+
+  const [uploadedFiles, setUploadedFiles] =
+    useState([]);
+
   const [result, setResult] =
     useState(null);
 
@@ -24,6 +42,15 @@ export default function Analysis() {
   const [feedbackStatus, setFeedbackStatus] =
     useState("");
 
+  const handleFiles = (e) => {
+
+    const files =
+      Array.from(e.target.files);
+
+    setUploadedFiles(files);
+
+  };
+
   const analyzeEquipment = async () => {
 
     try {
@@ -34,7 +61,28 @@ export default function Analysis() {
         "https://maintenance-wizard-integrated-agentic-ai-production.up.railway.app/maintenance/analyze",
         {
           equipment,
+
           symptoms,
+
+          fault_message:
+            faultMessage,
+
+          delay_log:
+            delayLog,
+
+          sensor_summary:
+            sensorSummary,
+
+          anomaly_alert:
+            anomalyAlert,
+
+          engineer_query:
+            engineerQuery,
+
+          uploaded_documents:
+            uploadedFiles.map(
+              file => file.name
+            )
         }
       );
       console.log(
@@ -160,83 +208,95 @@ export default function Analysis() {
       <div className="space-y-4 mb-8">
 
         <input
-          className="
-          w-full
-          bg-slate-800
-          border border-slate-700
-          p-3
-          rounded-xl
-          focus:outline-none
-          focus:border-cyan-500
-          "
+          className="w-full bg-slate-800 border border-slate-700 p-3 rounded-xl"
+          placeholder="Equipment Name"
           value={equipment}
-          onChange={(e) =>
-            setEquipment(e.target.value)
-          }
+          onChange={(e)=>setEquipment(e.target.value)}
+        />
+
+        <textarea
+          rows={3}
+          className="w-full bg-slate-800 border border-slate-700 p-3 rounded-xl"
+          placeholder="Fault/Error Message"
+          value={faultMessage}
+          onChange={(e)=>setFaultMessage(e.target.value)}
+        />
+
+        <textarea
+          rows={3}
+          className="w-full bg-slate-800 border border-slate-700 p-3 rounded-xl"
+          placeholder="Equipment Delay Log"
+          value={delayLog}
+          onChange={(e)=>setDelayLog(e.target.value)}
+        />
+
+        <textarea
+          rows={3}
+          className="w-full bg-slate-800 border border-slate-700 p-3 rounded-xl"
+          placeholder="Sensor Data Summary"
+          value={sensorSummary}
+          onChange={(e)=>setSensorSummary(e.target.value)}
+        />
+
+        <textarea
+          rows={3}
+          className="w-full bg-slate-800 border border-slate-700 p-3 rounded-xl"
+          placeholder="Anomaly Alert"
+          value={anomalyAlert}
+          onChange={(e)=>setAnomalyAlert(e.target.value)}
         />
 
         <textarea
           rows={4}
-          className="
-          w-full
-          bg-slate-800
-          border border-slate-700
-          p-3
-          rounded-xl
-          focus:outline-none
-          focus:border-cyan-500
-          "
+          className="w-full bg-slate-800 border border-slate-700 p-3 rounded-xl"
+          placeholder="Symptoms"
           value={symptoms}
-          onChange={(e) =>
-            setSymptoms(e.target.value)
-          }
+          onChange={(e)=>setSymptoms(e.target.value)}
         />
 
-        {/* Buttons */}
+        <textarea
+          rows={3}
+          className="w-full bg-slate-800 border border-slate-700 p-3 rounded-xl"
+          placeholder="Natural Language Query"
+          value={engineerQuery}
+          onChange={(e)=>setEngineerQuery(e.target.value)}
+        />
 
-        <div className="flex gap-3">
+        <div className="bg-slate-900 p-4 rounded-xl">
 
-          <button
-            onClick={analyzeEquipment}
-            disabled={loading}
-            className="
-            bg-cyan-600
-            hover:bg-cyan-500
-            hover:scale-105
-            transition-all
-            duration-200
-            px-6
-            py-3
-            rounded-xl
-            font-semibold
-            shadow-lg
-            shadow-cyan-900/50
-            disabled:opacity-50
-            "
-          >
-            {loading ? "Analyzing..." : "Analyze Equipment"}
-          </button>
+          <div className="mb-2 text-cyan-400">
+            Upload Knowledge Documents
+          </div>
 
-          <button
-            onClick={downloadReport}
-            className="
-            bg-green-600
-            hover:bg-green-500
-            hover:scale-105
-            transition-all
-            duration-200
-            px-6
-            py-3
-            rounded-xl
-            font-semibold
-            shadow-lg
-            shadow-green-900/50
-            "
-          >
-            📄 Download PDF Report
-          </button>
+          <input
+            type="file"
+            multiple
+            onChange={handleFiles}
+          />
 
         </div>
+
+        {
+          uploadedFiles.length > 0 && (
+
+            <div className="bg-slate-900 p-4 rounded-xl">
+
+              <div className="text-green-400 mb-2">
+                Uploaded Files
+              </div>
+
+              {
+                uploadedFiles.map((file,index)=>(
+                  <div key={index}>
+                    📄 {file.name}
+                  </div>
+                ))
+              }
+
+            </div>
+
+          )
+        }
 
       </div>
 
