@@ -2,9 +2,34 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import KPIcard from "../components/KPIcard";
 
+import {
+  PieChart,
+  Pie,
+  Cell,
+  Tooltip,
+  ResponsiveContainer
+} from "recharts";
+
 export default function Dashboard() {
 
   const [dashboard, setDashboard] = useState(null);
+  const assetDistribution = [
+    { name: "Rolling Mill", value: 25 },
+    { name: "Blast Furnace", value: 20 },
+    { name: "Material Handling", value: 18 },
+    { name: "CCM", value: 15 },
+    { name: "Power Plant", value: 12 },
+    { name: "Utilities", value: 10 }
+  ];
+
+  const COLORS = [
+    "#06b6d4",
+    "#22c55e",
+    "#f59e0b",
+    "#ef4444",
+    "#8b5cf6",
+    "#64748b"
+  ];
 
   useEffect(() => {
 
@@ -124,6 +149,50 @@ export default function Dashboard() {
               color={item.color}
             />
           ))}
+
+        </div>
+
+        {/* Asset Distribution */}
+
+        <div className="bg-slate-900 rounded-3xl p-6 border border-slate-800 mb-8">
+
+          <h2 className="text-3xl font-bold text-cyan-400 mb-6">
+            Plant Asset Distribution
+          </h2>
+
+          <div className="h-96">
+
+            <ResponsiveContainer width="100%" height="100%">
+
+              <PieChart>
+
+                <Pie
+                  data={assetDistribution}
+                  cx="50%"
+                  cy="50%"
+                  outerRadius={140}
+                  dataKey="value"
+                  label
+                >
+
+                  {assetDistribution.map((entry, index) => (
+
+                    <Cell
+                      key={index}
+                      fill={COLORS[index % COLORS.length]}
+                    />
+
+                  ))}
+
+                </Pie>
+
+                <Tooltip />
+
+              </PieChart>
+
+            </ResponsiveContainer>
+
+          </div>
 
         </div>
 
