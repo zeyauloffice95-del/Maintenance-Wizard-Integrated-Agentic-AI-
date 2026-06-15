@@ -3,6 +3,88 @@ import axios from "axios";
 
 export default function Analysis() {
 
+  const EQUIPMENT_DATA = {
+
+    "CCM Segment Bearing": {
+
+      fault_message:
+        "High vibration alarm generated",
+
+      delay_log:
+        "Caster stopped for 18 minutes",
+
+      sensor_summary:
+        "Vibration=12.5 mm/s, Temperature=82°C",
+
+      anomaly_alert:
+        "Bearing vibration threshold exceeded",
+
+      symptoms:
+        "Abnormal noise, high vibration, overheating",
+
+      engineer_query:
+        "Why is the bearing failing repeatedly?",
+
+      knowledge_docs: [
+        "bearing_replacement.pdf",
+        "Continuous Caster Roll Change SOP.pdf"
+      ]
+    },
+
+    "HSM Gearbox": {
+
+      fault_message:
+        "Gearbox temperature alarm",
+
+      delay_log:
+        "Rolling mill delay 12 minutes",
+
+      sensor_summary:
+        "Oil Temp=95°C",
+
+      anomaly_alert:
+        "Lubrication degradation detected",
+
+      symptoms:
+        "Gear noise and high temperature",
+
+      engineer_query:
+        "What is the root cause?",
+
+      knowledge_docs: [
+        "gearbox_manual.pdf",
+        "Gearbox Alignment SOP.pdf"
+      ]
+    },
+
+    "Blast Furnace Motor": {
+
+      fault_message:
+        "Motor overload trip",
+
+      delay_log:
+        "Production loss 25 minutes",
+
+      sensor_summary:
+        "Current=420A",
+
+      anomaly_alert:
+        "Motor current exceeded limit",
+
+      symptoms:
+        "Overheating and current spike",
+
+      engineer_query:
+        "Can the motor fail within a week?",
+
+      knowledge_docs: [
+        "Motor Inspection SOP.pdf",
+        "Motor Overheating Investigation.pdf"
+      ]
+    }
+
+  };
+
   const [equipment, setEquipment] =
     useState("");
 
@@ -25,6 +107,9 @@ export default function Analysis() {
     useState("");
 
   const [uploadedFiles, setUploadedFiles] =
+    useState([]);
+
+  const [relatedDocs, setRelatedDocs] =
     useState([]);
 
   const [result, setResult] =
@@ -246,12 +331,84 @@ export default function Analysis() {
 
       <div className="space-y-4 mb-8">
 
-        <input
-          className="w-full bg-slate-800 border border-slate-700 p-3 rounded-xl"
-          placeholder="Equipment Name"
+        <select
+
           value={equipment}
-          onChange={(e)=>setEquipment(e.target.value)}
-        />
+
+          onChange={(e)=>{
+
+            const selected =
+              e.target.value;
+
+            setEquipment(selected);
+
+            const data =
+              EQUIPMENT_DATA[selected];
+
+            if(data){
+
+              setFaultMessage(
+                data.fault_message
+              );
+
+              setDelayLog(
+                data.delay_log
+              );
+
+              setSensorSummary(
+                data.sensor_summary
+              );
+
+              setAnomalyAlert(
+                data.anomaly_alert
+              );
+
+              setSymptoms(
+                data.symptoms
+              );
+
+              setEngineerQuery(
+                data.engineer_query
+              );
+
+              setRelatedDocs(
+                data.knowledge_docs
+              );
+
+            }
+
+          }}
+
+          className="
+          w-full
+          bg-slate-800
+          border
+          border-slate-700
+          p-3
+          rounded-xl
+          "
+        >
+
+          <option value="">
+            Select Equipment
+          </option>
+
+          {
+            Object.keys(EQUIPMENT_DATA).map(
+              equipment => (
+
+                <option
+                  key={equipment}
+                  value={equipment}
+                >
+                  {equipment}
+                </option>
+
+              )
+            )
+          }
+
+        </select>
 
         <textarea
           rows={3}
@@ -302,6 +459,43 @@ export default function Analysis() {
         />
 
         <div className="bg-slate-900 p-6 rounded-2xl border border-cyan-800">
+          {
+            relatedDocs.length > 0 && (
+
+              <div className="mt-4">
+
+                <div className="text-green-400 font-bold mb-2">
+
+                  Recommended Knowledge Documents
+
+                </div>
+
+                {
+                  relatedDocs.map(
+                    (doc,index)=>(
+
+                      <div
+                        key={index}
+                        className="
+                        bg-slate-800
+                        p-2
+                        rounded
+                        mb-2
+                        "
+                      >
+
+                        📄 {doc}
+
+                      </div>
+
+                    )
+                  )
+                }
+
+              </div>
+
+            )
+          }
 
           <h2 className="text-xl font-bold text-cyan-400 mb-4">
 
