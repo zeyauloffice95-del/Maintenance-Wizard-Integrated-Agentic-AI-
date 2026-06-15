@@ -3,41 +3,8 @@ Maintenance Wizard is an AI-powered Industrial Maintenance Assistant designed to
 The system combines Large Language Models (LLMs), predictive analytics, knowledge retrieval, root-cause reasoning, and intelligent alerting into a unified platform that acts as a virtual maintenance expert.
 The objective is to reduce equipment downtime, improve maintenance efficiency, enhance decision-making, and enable proactive maintenance strategies in industrial environments.
 
-2. System Architecture
-High-Level Architecture
-                    ┌────────────────────┐
-                    │    User Interface   │
-                    │  (React + Vercel)   │
-                    └──────────┬─────────┘
-                               │
-                               ▼
-                    ┌────────────────────┐
-                    │  API Gateway Layer │
-                    └──────────┬─────────┘
-                               │
-          ┌────────────────────┼───────────────────┐
-          │                    │                   │
-          ▼                    ▼                   ▼
- ┌────────────────┐  ┌────────────────┐  ┌────────────────┐
- │ Knowledge Agent│  │ Prediction Agent│ │ Alert Agent     │
- └────────────────┘  └────────────────┘  └────────────────┘
-          │                    │                   │
-          ▼                    ▼                   ▼
- ┌────────────────┐  ┌────────────────┐  ┌────────────────┐
- │ RCA Agent      │  │ Recommendation │  │ Monitoring     │
- │ (Root Cause)   │  │ Agent          │  │ Agent          │
- └────────────────┘  └────────────────┘  └────────────────┘
-                     ▼
-         ┌─────────────────────────┐
-         │ LLM Orchestration Layer │
-         └─────────────────────────┘
-                     ▼
-         ┌─────────────────────────┐
-         │ Historical Maintenance  │
-         │ Data / Knowledge Base   │
-         └─────────────────────────┘
 
-3. Technology Stack Used
+2. Technology Stack Used
 Frontend
     • React.js 
     • TypeScript 
@@ -65,7 +32,7 @@ Deployment
     • Cloud-hosted Backend Services 
     • API-based Integration 
 
-4. Data Flow and System Flow
+3. Data Flow and System Flow
 Step 1 – User Input
 The user enters:
     • Equipment details 
@@ -121,28 +88,23 @@ User receives:
     • Priority Level 
     • Maintenance Plan 
 
-5. Model Design and Reasoning Pipeline
+4. Model Design and Reasoning Pipeline
 Multi-Agent Reasoning Workflow
 User Query
-     │
-     ▼
+
 Intent Detection
-     │
-     ▼
+
 Task Decomposition
-     │
-     ▼
+
 Agent Assignment
-     │
- ┌───┼──────────────┐
- ▼   ▼              ▼
+
 Knowledge      Prediction
 Agent          Agent
- ▼                ▼
+
 RCA Agent   Recommendation Agent
-      ▼
+
 Response Synthesizer
-      ▼
+
 Final Maintenance Report
 
 Reasoning Strategy
@@ -168,7 +130,7 @@ Produces:
     • Priority assignments 
     • Maintenance schedules 
 
-6. Alerting and Prediction Logic
+5. Alerting and Prediction Logic
 Alert Severity Levels
 Green
 Normal operation
@@ -207,7 +169,7 @@ Medium Risk
 High Risk
 Critical Risk
 
-7. Key Features
+6. Key Features
 Intelligent Fault Diagnosis
 Automatically identifies likely causes of failures.
 
@@ -229,21 +191,8 @@ Suggests:
 Interactive AI Assistant
 Allows natural language interaction with maintenance teams.
 
-8. Assumptions
-    1. Equipment data provided is reasonably accurate. 
-    2. Historical maintenance records are available. 
-    3. Sensor readings are updated periodically. 
-    4. Users provide sufficient failure descriptions. 
-    5. Domain knowledge repository is maintained. 
 
-9. Limitations
-    1. Accuracy depends on quality of input data. 
-    2. Extremely rare failure modes may not have historical references. 
-    3. Predictions are probabilistic, not guaranteed outcomes. 
-    4. Real-time performance depends on backend infrastructure. 
-    5. Requires periodic updates to knowledge base and maintenance records. 
-
-10. Installation and Configuration Guide
+7. Installation and Configuration Guide
 Prerequisites
 Python 3.10+
 Node.js 18+
@@ -270,7 +219,7 @@ GEMINI_API_KEY_2=xxxx
 GEMINI_API_KEY_3=xxxx
 
 
-11. Sample Input and Output Demonstration
+8. Sample Input and Output Demonstration
 Sample Input
 Equipment:
 Conveyor Drive Motor
@@ -298,7 +247,7 @@ Recommended Actions:
 Priority:
 Immediate Maintenance Recommended
 
-12. Business Impact
+9. Business Impact
 The Maintenance Wizard system delivers:
     • Reduced equipment downtime 
     • Faster fault diagnosis 
@@ -307,6 +256,6 @@ The Maintenance Wizard system delivers:
     • Increased plant availability 
     • Better decision support for maintenance teams 
 
-13. Conclusion
+10. Conclusion
 Maintenance Wizard is a scalable Industrial Multi-Agent AI platform that combines predictive maintenance, root-cause analysis, intelligent alerting, and maintenance recommendations into a single decision-support system. By leveraging collaborative AI agents and advanced reasoning pipelines, the system helps industries move from reactive maintenance to proactive and predictive maintenance strategies, improving operational reliability and reducing unplanned downtime.
 This version is suitable for submission to hackathons, innovation challenges, industry showcases, and technical evaluations.
